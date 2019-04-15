@@ -102,11 +102,11 @@ def scrape_hemispheres():
         base_url = 'https://astrogeology.usgs.gov' 
 
         for i in items:
-            html = browser.html
-            soup = BeautifulSoup(html, 'html.parser') 
             title = i.find('h3').text
             partial_img_url = i.find('a', class_='itemLink product-item')['href']
             browser.visit(base_url + partial_img_url)
+            html = browser.html
+            soup = BeautifulSoup(html, 'html.parser') 
             img_url = base_url + soup.find('img', class_='wide-image')['src']
             
             hem_url_list.append({"title" : title, "img_url" : img_url})
